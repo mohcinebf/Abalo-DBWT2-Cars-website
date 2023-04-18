@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        let array1 = ['erstes', 'zweites', 3, 4];
+
+        let i = 0;
+        for(const value of array1) {
+            console.log(i++ + ' => ' + value);
+        }
+
+        for(let i=0;i<array1.length;i++) {
+            console.log(i + " => " + array1[i]);
+        }
+
+        array1.forEach(function (value, index) {
+            console.log(index + ' => ' + value);
+        })
+
+        array1.pop();
+        array1.push(5);
+        array1.splice(1,1);
+
+        console.log(array1);
+
+    </script>
+</body>
+</html>

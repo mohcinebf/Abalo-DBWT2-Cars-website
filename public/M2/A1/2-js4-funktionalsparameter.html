@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>function as parameter</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        function mult(fn, a, b){
+            return fn(a,b);
+        }
+        let m = mult(
+            function(x,y) {
+                return x * y;
+            }, 3, 4);
+
+        console.log('output of the function is: ', m);
+    </script>
+</body>
+</html>
