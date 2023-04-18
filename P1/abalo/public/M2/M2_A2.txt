@@ -1,4 +1,0 @@
-Aufgabe2:
-- Eingebetteter SQL-Editor: In PhpStorm gibt es einen eingebetteten SQL-Editor, der Ihnen die Möglichkeit gibt, SQL-Abfragen direkt in Ihrem PHP-Code auszuführen. Sie müssen nicht mehr zwischen verschiedenen Tools wechseln, um SQL-Abfragen auszuführen und zu testen. Dies spart Zeit und erleichtert die Arbeit mit Datenbanken in PHP-Projekten.
-- Code-Inspection und Refactoring-Tools: PhpStorm bietet eine leistungsstarke Code-Inspection-Funktion, die während der Codebearbeitung Warnungen und Hinweise auf potenzielle Fehler und schlechte Praktiken im Code anzeigt. Diese Funktionen helfen, die Qualität des Codes zu erhöhen und gleichzeitig Arbeitszeit zu sparen.
-- Code-Completion und Auto-Import: PhpStorm verfügt über eine automatische Vervollständigungsfunktion, die Ihnen Vorschläge für Methodennamen, Klassennamen, Variablen und mehr gibt.
