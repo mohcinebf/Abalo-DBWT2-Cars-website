@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js19-timeout</title>
+</head>
+<body onload="changeBackgroundColor()">
+<div id="myElement" style="width: 400px; height: 200px;"></div>
+<script>
+    function changeBackgroundColor() {
+        var element = document.getElementById("myElement");
+        if (element.style.backgroundColor === "white") {
+            element.style.backgroundColor = "red";
+        } else {
+            element.style.backgroundColor = "white";
+        }
+        setTimeout(changeBackgroundColor, 1000);
+    }
+</script>
+</body>
+</html>

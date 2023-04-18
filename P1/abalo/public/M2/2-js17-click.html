@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js17-click</title>
+</head>
+<body>
+<button id="btn" value="Farbe" >Farbe ändern
+<script>
+let btn =document.getElementById("btn");
+let Color=["red", "yellow","green"];
+
+let i=0;
+
+btn.onclick=function (){
+    btn.style.color = Color[i];
+    i= (i+1) % Color.length;
+
+
+
+
+}
+
+</script>
+</body>
+</html>
