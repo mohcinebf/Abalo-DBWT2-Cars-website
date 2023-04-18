@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js18-mouseover</title>
+</head>
+<body>
+<div id="flaeche"></div>
+<script>
+    let flaeche = document.getElementById("flaeche");
+    let body = document.querySelector("body");
+    body.style.backgroundColor = "#DDD";
+    flaeche.style.width="200px";
+    flaeche.style.height="200px";
+    flaeche.style.backgroundColor="#e6e6e6";
+    flaeche.onmouseover =function (){
+        flaeche.style.backgroundColor="green";
+    }
+    flaeche.onmouseleave =function (){
+        flaeche.style.backgroundColor="white";
+    }
+</script>
+
+</body>
+</html>

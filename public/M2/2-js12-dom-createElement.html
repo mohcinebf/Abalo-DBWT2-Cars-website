@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createElement</title>
+</head>
+<body>
+
+<script>
+    let formElement = document.createElement("form");
+    let labelElement = document.createElement("label");
+    let inputElement = document.createElement("input");
+    inputElement.type="text";
+    labelElement.innerText="Text: ";
+    inputElement.placeholder = "Geben Sie Ihren Text ein";
+
+    formElement.appendChild(labelElement);
+    formElement.appendChild(inputElement);
+
+    let select = document.createElement("select");
+    let option1 = document.createElement("option");
+    option1.value = "option1";
+    option1.text = "Option 1";
+    select.appendChild(option1);
+
+    let option2 = document.createElement("option");
+    option2.value = "option2";
+    option2.text = "Option 2";
+    select.appendChild(option2);
+
+    formElement.appendChild(select);
+    document.body.appendChild(formElement);
+
+
+</script>
+</body>
+</html>

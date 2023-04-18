@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-js15-objekte</title>
+</head>
+<body>
+<script>
+    "use strict"
+    //json
+    let car = {
+        name: "",
+        type: "",
+
+         getname: function() {
+            return car.name;
+        },
+         gettype: function () {
+            return car.type;
+        },
+         setname: function (name) {
+            car.name = name;
+        },
+         settype: function (type) {
+            car.type = type;
+        },
+         writeToConsole: function () {
+            console.log("name=<" + car.name + ">, type=<" + car.type + ">");
+        }
+    };
+
+    car.setname("Audi");
+    car.settype("Auto");
+    car.writeToConsole();
+
+
+    function Car1(){
+        this.name="";
+        this.type="";
+        this.getName = function (){
+            return this.name;
+        }
+        /* warum kann ich die Funktion nicht so definieren hier?
+        function getname2 () {
+            return name;
+        }*/
+        this.getType = function (){
+            return this.type;
+        }
+        this.setName = function (name) {
+            this.name = name;
+        }
+        this.setType = function (type){
+            this.type =type;
+        }
+        this.writeToConsole = function () {
+            console.log("name=<" + this.name + ">, type=<" + this.type + ">");
+        }
+    }
+
+    let carFunc = new Car1();
+    carFunc.setName("BMW");
+    carFunc.setType("Auto");
+    carFunc.writeToConsole();
+
+    class CarClass{
+        constructor() {
+            this.name="";
+            this.type="";
+        }
+        getName(){return this.name;}
+        getType(){return this.type;}
+        setName(name){this.name=name;}
+        setType(type){this.type=type;}
+        writeToConsole () {
+            console.log("name=<" + this.name + ">, type=<" + this.type + ">");
+        }
+    }
+let carclass =new CarClass();
+    carclass.setName("Opel");
+    carclass.setType("Auto");
+    carclass.writeToConsole();
+
+</script>
+</body>
+</html>

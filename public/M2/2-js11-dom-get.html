@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Get Example</title>
+</head>
+<body>
+<h1 id="header">Überschrift</h1>
+<p class="text">Klein Zeichen: &lt;</p>
+<ul>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+</ul>
+<form>
+    <label for="input">Eingabefeld:</label>
+    <input type="text" id="input" name="input">
+</form>
+
+<script>
+    // Zugriff auf Elemente per ID
+    let header = document.getElementById("header");
+    console.log("Überschrift: " + header.innerText);
+
+    // Zugriff auf Elemente per Klassenname
+    let textElements = document.getElementsByClassName("text");
+    console.log("Text: " + textElements[0].innerText);
+
+
+    // Zugriff auf Elemente per Tag-Name
+    let listElements = document.getElementsByTagName("li");
+    for (let i = 0; i < listElements.length; i++) {
+        console.log("Li: " + listElements[i].innerText);
+    }
+
+    // Zugriff auf Elemente per Name
+    var input = document.getElementsByName("input");
+    input.value = "Neuer Wert";
+    console.log("Elemente per Name: " +  input.value);
+
+</script>
+</body>
+</html>

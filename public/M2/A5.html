@@ -1,0 +1,103 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="data.js"></script>
+    </head>
+    <body>
+    <div id="MaxPreis"></div>
+    <div id="MinPreisProdukt"></div>
+    <div id="PreisSum"></div>
+    <div id="GesamtWert"></div>
+    <div id="AnzahlProdukteOfKategorie"></div>
+
+    <script>
+
+    let getMaxPreis=function (data){
+        let product=data.produkte;
+        let max=0;
+        let name="";
+        for(let i=0;i<product.length;i++){
+            if(product[i].preis>max){
+                max=product[i].preis;
+                name=product[i].name;
+            }
+        }
+        return {max:max,name:name};
+    }
+    console.log("Maximum: "+getMaxPreis(data).max+", Name: "+getMaxPreis(data).name);
+    let f1 = document.getElementById("MaxPreis");
+    f1.innerText="Maximum: "+getMaxPreis(data).max+", Name: "+getMaxPreis(data).name;
+
+    getMinPreisProdukt=function (data){
+        let product=data.produkte;
+        let min=data.produkte[0];
+        for(let key in product){
+            if(product[key].preis<min.preis){
+                min=product[key];
+
+            }
+        }
+        return min;
+    }
+console.log(getMinPreisProdukt(data));
+    let f2 = document.getElementById("MinPreisProdukt");
+    f2.innerText = "Name: "+getMinPreisProdukt(data).name+
+                ", preis: "+getMinPreisProdukt(data).preis+
+                ", kategorie: "+getMinPreisProdukt(data).kategorie+
+                ", anzahl: "+getMinPreisProdukt(data).anzahl;
+
+
+    getPreisSum = function (data){
+        let product=data.produkte;
+        let sum=0;
+        for(let key in product){
+            sum+=product[key].preis;
+        }
+        return sum;
+    }
+    console.log(getPreisSum(data));
+    let f3 = document.getElementById("PreisSum");
+    f3.innerText="PreisSum: "+getPreisSum(data);
+
+    getGesamtWert =function (data){
+        let product=data.produkte;
+        let total=0;
+        for(let key in product){
+            total +=product[key].preis * product[key].anzahl;
+        }
+        return total;
+    }
+    console.log(getGesamtWert(data));
+    let f4 = document.getElementById("GesamtWert");
+    f4.innerText="GesamtWert: "+getGesamtWert(data);
+
+    getAnzahlProdukteOfKategorie =function (data,name){
+        let kategorien = data.kategorien;
+        let product=data.produkte;
+        let kategorieId;
+        let sum=0;
+        for (let key in kategorien){
+           if( kategorien[key].name === name){
+               kategorieId=kategorien[key].id;
+           }
+        }
+        for(let key in product){
+            if(product[key].kategorie === kategorieId){
+                sum +=product[key].anzahl;
+            }
+
+        }
+
+        return sum;
+
+    }
+    console.log(getAnzahlProdukteOfKategorie(data,"Spielzeug"));
+    let f5 = document.getElementById("AnzahlProdukteOfKategorie");
+    f5.innerText="Anzahl der Spielzeug: "+getAnzahlProdukteOfKategorie(data,"Spielzeug");
+
+    </script>
+
+    </body>
+    </html>
