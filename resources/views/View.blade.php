@@ -12,7 +12,6 @@
     <button type="submit">Search</button>
 </form>
 <br>
-<br>
 
 {{-- Warenkorb --}}
     <div id="Shopping Cart">
@@ -27,12 +26,10 @@
             </tr>
             </thead>
             <tbody id="cart">
-
             </tbody>
         </table>
         <br>
     </div>
-<br>
 
 {{-- Artikelübersicht --}}
 <h1>List of Articles</h1>
@@ -74,13 +71,27 @@
     <script>
         'use strict'
 
-        let cartTable = document.getElementById("cart");
+        /** array contains all cart-element id
+         * @type {any[]}
+         */
         let CartList = new Array();
 
+        /** div element contains cart table
+         * @type {HTMLElement}
+         * be hidden when no article in cart
+         */
         let divShoppingCart = document.getElementById("Shopping Cart");
         if (CartList.length == 0)
             divShoppingCart.style.visibility = "hidden";
 
+        /** table <tbody> element
+         * */
+        let cartTable = document.getElementById("cart");
+
+
+        /** function to create a table when '+' button was clicked
+         * @param id : id of the selected article
+         */
         function shoppingCart(id) {
             CartList.push(id);
             divShoppingCart.style.visibility = "visible";
@@ -94,11 +105,10 @@
             let tdRemove = document.createElement("td");
 
             /** find selected items
-             *
              * @type {HTMLElement}
              */
             let addButtonColumn = document.getElementById("input" + id);
-            let articleRow = document.getElementById(id);
+            let articleRow = document.getElementById(''+id);
 
             /**
              ** add content from the selected article to cart (name, price, image)
@@ -118,7 +128,6 @@
             }
 
             /** create remove button
-             *
              * @type {HTMLInputElement}
              */
             let removeButton = document.createElement("input");
@@ -126,6 +135,7 @@
             removeButton.setAttribute("type", "button");
             removeButton.setAttribute("value", "-");
             tdRemove.append(removeButton);
+            removeButton.onclick = function() {remove_from_shopping_cart(id)};
 
             /** add "td" elements to "tr"
              */
@@ -139,20 +149,30 @@
             cartTable.append(new_cartElement);
         }
 
-            let i = 0;
-            for (const id of CartList){
-                i += 1;
-                let rmvItemButton = document.getElementById("remove" + id);
+        /**  function to remove a article from shopping cart
+         * @param id of the selected article when click '-' button
+         */
+        function remove_from_shopping_cart(id) {
 
-                console.log(rmvItemButton.getAttribute("id") + "is");
+            /** remove a row by removing a <tr> tag
+             * */
+            let trRemoveItem = document.getElementById("cartElement" + id);
+            cartTable.removeChild(trRemoveItem);
 
-                rmvItemButton.addEventListener("click", function () {
-                    console.error(id);
-                    let trRemoveItem = document.getElementById("cartElement" + id);
-                    cartTable.removeChild(trRemoveItem);
-                    CartList.splice(i, 1);
-                })
-            }
-        </script>
+            /** delete article-id in cart-element array
+             * hide the <div> area when ta no article in cart
+             */
+            CartList.splice(CartList.indexOf(id), 1);
+            if (CartList.length == 0)
+                divShoppingCart.style.visibility = "hidden";
+
+            /** make '+' button visible again
+             * give user an option to add to cart again
+             * @type {HTMLElement}
+             */
+            let addButtonColumn = document.getElementById("input" + id);
+            addButtonColumn.style.visibility = "visible";
+        }
+</script>
 </table>
 </body>
