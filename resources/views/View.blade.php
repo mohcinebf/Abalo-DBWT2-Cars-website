@@ -140,7 +140,7 @@
         }
 
             let i = 0;
-            for (const id of CartList) {
+            for (const id of CartList){
                 i += 1;
                 let rmvItemButton = document.getElementById("remove" + id);
 
