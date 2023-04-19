@@ -15,7 +15,7 @@
 <br>
 
 {{-- Warenkorb --}}
-    <div>
+    <div id="Shopping Cart">
         <h2>Shopping Cart</h2>
         <table border="1px">
             <thead>
@@ -70,15 +70,23 @@
     </tbody>
 
 
-    {{-- Hinzufügen zum Warenkorb --}}
+    {{-- Hinzufügen und Loeschen im Warenkorb --}}
     <script>
         'use strict'
 
         let cartTable = document.getElementById("cart");
+        let CartList = new Array();
+
+        let divShoppingCart = document.getElementById("Shopping Cart");
+        if (CartList.length == 0)
+            divShoppingCart.style.visibility = "hidden";
 
         function shoppingCart(id) {
+            CartList.push(id);
+            divShoppingCart.style.visibility = "visible";
 
             let new_cartElement = document.createElement("tr");
+            new_cartElement.setAttribute("id", "cartElement" + id);
 
             let tdName = document.createElement("td");
             let tdPrice = document.createElement("td");
@@ -106,7 +114,7 @@
                 tdImage.innerHTML = tdImageContent;
 
                 // hide the already clicked button
-                addButtonColumn.style.visibility="hidden";
+                addButtonColumn.style.visibility = "hidden";
             }
 
             /** create remove button
@@ -119,44 +127,32 @@
             removeButton.setAttribute("value", "-");
             tdRemove.append(removeButton);
 
+            /** add "td" elements to "tr"
+             */
             new_cartElement.append(tdName);
             new_cartElement.append(tdPrice);
             new_cartElement.append(tdImage);
             new_cartElement.append(tdRemove);
 
+            /** add "tr" elements to <table body>
+             */
             cartTable.append(new_cartElement);
-
-            let rmv = document.getElementById("remove" + id);
-            if (rmv.getAttribute("value") === "-") {
-                document.removeChild(new_cartElement);}
         }
-        /*
-        let Navigationsmenues = document.getElementsByClassName("Navigationsmenues")[0]; // select the first element with class "Navigationsmenues"
-        let ulElement = document.createElement("ul");
-        let liHome = document.createElement("li");
-        let liKategorien = document.createElement("li");
-        let liVerkaufen = document.createElement("li");
-        let liUnternehmen = document.createElement("ul");
-        let liPhilosophie = document.createElement("li");
 
-        //let aHome = document.createElement("a");
-        liHome.innerText = "Home";
-        liKategorien.innerText = "Kategorien";
-        liVerkaufen.innerText = "Verkaufen";
-        liUnternehmen.innerText = "Unternehmen";
-        liPhilosophie.innerText = "Philosophie";
+            let i = 0;
+            for (const id of CartList) {
+                i += 1;
+                let rmvItemButton = document.getElementById("remove" + id);
 
-        //liHome.appendChild(aHome);
-        ulElement.appendChild(liHome);
-        ulElement.appendChild(liKategorien);
-        ulElement.appendChild(liVerkaufen);
-        ulElement.appendChild(liUnternehmen);
-        liUnternehmen.appendChild(liPhilosophie);
+                console.log(rmvItemButton.getAttribute("id") + "is");
 
-        Navigationsmenues.appendChild(ulElement);
-
-        */
-        //document.body.appendChild(Navigationsmenues);
+                rmvItemButton.addEventListener("click", function () {
+                    console.error(id);
+                    let trRemoveItem = document.getElementById("cartElement" + id);
+                    cartTable.removeChild(trRemoveItem);
+                    CartList.splice(i, 1);
+                })
+            }
         </script>
 </table>
 </body>
