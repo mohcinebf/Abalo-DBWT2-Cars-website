@@ -5,6 +5,7 @@
     <title>Artikeln</title>
 </head>
 <body>
+@include("patterns/navigation")
 <div class="Navigationsmenues"></div>
 <h2>Search for a Item</h2>
 <form method="GET" action="/articles">

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>Debug: Cookietest</title>
+    <title>Debug: Navigation</title>
 </head>
 <body>
-@include("patterns/cookieform")
+@include("patterns.navigation")
 </body>
 </html>

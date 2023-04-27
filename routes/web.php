@@ -15,10 +15,10 @@ Route::get('/newarticle', function () { return view('Artikeleingabe');});
 
 Route::get('/m3/3-ajax1-static', function () { return view('m3/3-ajax1-static');});
 Route::get('/m3/3-ajax2-periodic', function () { return view('m3/3-ajax2-periodic');});
-Route::get('/getMOTD', [App\Http\Controllers\M3Controller::class,'getMOTD']);
 Route::post('/getMOTD', [App\Http\Controllers\M3Controller::class,'getMOTD']);
 
-Route::get('/debug/cookietest', function () { return view('cookietest');});
+Route::get('/debug/cookietest', function () { return view('/debug/cookietest');});
+Route::get('/debug/navigation', function () { return view('/debug/navigationtest');});
 
 
 /*Route::get('/', function () {

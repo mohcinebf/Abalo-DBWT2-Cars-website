@@ -19,7 +19,7 @@ class ArtikelController extends Controller{
             $abarticle = $abarticles->get();
             // $abarticle =  DB::table('ab_article')->get();
         }
-        return view('view', ['abarticle' => $abarticle]);
+        return view('articles', ['abarticle' => $abarticle]);
 
 
     }
