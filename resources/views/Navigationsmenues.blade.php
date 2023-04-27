@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="Navigationsmenues"></div>
+@include("patterns/cookieform")
 </body>
 <script>
     const menuStructure =[

@@ -175,4 +175,5 @@
         }
 </script>
 </table>
+@include("patterns/cookieform")
 </body>
