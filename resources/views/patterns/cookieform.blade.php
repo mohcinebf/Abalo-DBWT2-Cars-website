@@ -9,7 +9,7 @@
 <style>
     #cookieformfooter {
         display: none;
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 10%;
         background-color: #ff9900;
