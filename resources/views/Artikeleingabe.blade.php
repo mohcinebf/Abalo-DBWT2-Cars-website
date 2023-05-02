@@ -40,6 +40,7 @@
     let createArticleButton = document.createElement('button');
     createArticleButton.innerHTML = 'Speichern';
 
+    let xhrResponse = document.createElement('p');
 
     createArticleButton.addEventListener('click', function (event){
         event.preventDefault();
@@ -49,27 +50,17 @@
         if(form.reportValidity()) {
             let xhr = new XMLHttpRequest();
             xhr.open("POST","/articles");
+            xhr.setRequestHeader('Accept', 'application/json');
             xhr.onreadystatechange = function (){
                 if(xhr.readyState === 4){
                     if(xhr.status === 200){
                         xhrResponse.innerText = xhr.responseText;
                         xhrResponse.style.color = "green";
-
-                        console.log("xhr.responseText: ",xhr.responseText);
-                        console.log("xhr.responseXML: ",xhr.responseXML);
-                        console.log("xhr.responseType: ",xhr.responseType);
-                        console.log("xhr.responseURL: ",xhr.responseURL);
-                        console.log("xhr.response: ",xhr.response);
-                        console.log("xhr.statusText: ",xhr.statusText);
                     }else{
                         const antwort = JSON.parse(xhr.responseText);
-                        console.log("xhr.responseText: "+ xhr.responseText);
-                        console.log("antwort: "+antwort);
-                        console.log("antwort['message']: "+antwort['message']);
-                        console.log("antwort['errors']: "+antwort['errors']);
-                        console.log("antwort['errors']['ab_name']: "+antwort['errors']['ab_name']);
 
                         for (let key in antwort['errors']){
+                            console.log("antwort['errors'][key] = " + antwort['errors'][key]);
                             ausgabe += antwort['errors'][key] + "<br>" ;
                         }
                         xhrResponse.innerHTML = antwort['message']+ "<br>" + ausgabe ;
@@ -77,21 +68,14 @@
                     }
                 }
             };
-            xhr.setRequestHeader('Accept', 'application/json');
             xhr.send(new FormData(form));
         }
     });
 
     form.append(createArticleButton);
-
     let newArticleForm = document.getElementById('newArticle');
     newArticleForm.append(form);
-
-    let xhrResponse = document.createElement('p');
-
-
     newArticleForm.append(xhrResponse);
-
 
 </script>
 
