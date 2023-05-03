@@ -4,7 +4,7 @@
     }
 
     a {
-        color: black;
+        color: floralwhite;
         text-decoration: none;
     }
 
@@ -43,6 +43,7 @@
         max-height: 300px;
         justify-content: space-evenly;
         background-color: #4a5568;
+        opacity: 0.7;
     }
 
     .textcategory {
