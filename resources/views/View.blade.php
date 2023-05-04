@@ -14,7 +14,7 @@
         <div id="Navigationsmenues"></div>
         <div class="search_item">
             <h2>Search for an Item:&nbsp;</h2>
-            <form method="GET" action="/articles">
+            <form method="GET" action="articlesapi">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="enter the item name here">
                 <button type="submit">Search</button>
             </form>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="popup">
-        <h3 onclick="popUpFunction()" style="color:orange"> Shopping Cart </h3>
+        <img src="shopping-cart-1985.png" width="50px" onclick="popUpFunction()">
         <table class="popUp_table" id="Shopping_Cart" border="1px">
             <thead>
             <tr>
