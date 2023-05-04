@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="popup">
-        <h3 onclick="popUpFunction()" style="color:orange"> Shopping Cart </h3>
+        <img src="shopping-cart-1985.png" width="50px" onclick="popUpFunction()">
         <table class="popUp_table" id="Shopping_Cart" border="1px">
             <thead>
             <tr>
