@@ -28,8 +28,8 @@ align-items: center;
     position: absolute;
     display: table-caption;
     cursor: pointer;
-    top: 80px;
-    right: 50px;
+    top: 90px;
+    right: 30px;
 }
 /* The actual popup (appears on top) */
 .popup .popUp_table {

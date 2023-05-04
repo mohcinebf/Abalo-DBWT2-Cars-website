@@ -13,6 +13,7 @@ let CartList = [];
 let divShoppingCart = document.getElementById("Shopping_Cart");
 let showCart = false;
 let table = document.getElementById('Shopping_Cart');
+
 function popUpFunction() {
     if(!showCart) {
         showCart = true;
