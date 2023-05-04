@@ -1,28 +1,41 @@
 'use strict'
-/** function to create a table when '+' button was clicked
-* @param id : id of the selected article
-*/
-var CartList = new Array();
 
-function shoppingCart(id) {
-    /** array contains all cart-element id
-    * @type {any[]}
-    */
+/** array contains all cart-element id
+ * @type {any[]}
+ */
+let CartList = [];
 
+/** div element contains cart table
+ * @type {HTMLElement}
+ * be hidden when no article in cart
+ */
 
-    /** div element contains cart table
-    * @type {HTMLElement}
-    * be hidden when no article in cart
-    */
-    let divShoppingCart = document.getElementById("Shopping_Cart");
-    if (CartList.length == 0)
-    divShoppingCart.style.visibility = "hidden";
-
-    /** table <tbody> element
-* */
+let divShoppingCart = document.getElementById("Shopping_Cart");
+let showCart = false;
+let table = document.getElementById('Shopping_Cart');
+function popUpFunction() {
+    if(!showCart) {
+        showCart = true;
+        if (CartList.length === 0)
+            divShoppingCart.style.visibility = "hidden";
+        else
+            table.style.visibility = "visible";
+    }
+    else {
+        showCart = false;
+        table.style.visibility = "hidden";
+    }
+}
+/** table <tbody> element
+ * */
 let cartTable = document.getElementById("cart");
+
+/** function to create a table when '+' button was clicked
+ * @param id : id of the selected article
+ */
+function shoppingCart(id) {
     CartList.push(id);
-    divShoppingCart.style.visibility = "visible";
+    //divShoppingCart.style.visibility = "visible";
 
     let new_cartElement = document.createElement("tr");
     new_cartElement.setAttribute("id", "cartElement" + id);
@@ -77,7 +90,7 @@ let cartTable = document.getElementById("cart");
     cartTable.append(new_cartElement);
 }
 
-/**  function to remove a article from shopping cart
+/**  function to remove an article from shopping cart
 * @param id of the selected article when click '-' button
 */
 function remove_from_shopping_cart(id) {
@@ -91,8 +104,8 @@ function remove_from_shopping_cart(id) {
      * hide the <div> area when ta no article in cart
      */
     CartList.splice(CartList.indexOf(id), 1);
-    if (CartList.length == 0)
-    divShoppingCart.style.visibility = "hidden";
+    if (CartList.length === 0)
+        divShoppingCart.style.visibility = "hidden";
 
     /** make '+' button visible again
      * give user an option to add to cart again

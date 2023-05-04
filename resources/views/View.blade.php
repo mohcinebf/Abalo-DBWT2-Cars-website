@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Artikeln</title>
 <script src="{{asset('js/Navigation.js')}}"></script>
-<script src="{{asset('js/shopingcart.js')}}"></script>
 <link rel="stylesheet" href="{{asset('css/article.css')}}">
 </head>
 <body>
@@ -14,29 +13,29 @@
         </div>
         <div id="Navigationsmenues"></div>
         <div class="search_item">
-            <h2>Search for a Item:&nbsp;</h2>
+            <h2>Search for an Item:&nbsp;</h2>
             <form method="GET" action="/articles">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="enter the item name here">
                 <button type="submit">Search</button>
             </form>
             <br>
         </div>
-        <div id="Shopping_Cart">
-            <h2>Shopping Cart</h2>
-            <table border="1px">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                    <th>REMOVE</th>
-                </tr>
-                </thead>
-                <tbody id="cart">
-                </tbody>
-            </table>
-            <br>
-        </div>
+    </div>
+    <div class="popup">
+        <h3 onclick="popUpFunction()" style="color:orange"> Shopping Cart </h3>
+        <table class="popUp_table" id="Shopping_Cart" border="1px">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>REMOVE</th>
+            </tr>
+            </thead>
+            <tbody id="cart">
+            </tbody>
+        </table>
+        <br>
     </div>
 <div class="body">
     <h1>List of Articles</h1>
@@ -75,5 +74,6 @@
                 </tbody>
         </table>
 </div>
+    <script src="{{asset('js/shopingcart.js')}}"></script>
 </body>
 </html>
