@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Artikeln</title>
-<script src="{{asset('js/Navigation.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/article.css')}}">
+    <meta charset="UTF-8">
+    <title>Artikeln</title>
+    <link rel="stylesheet" href="{{asset('css/article.css')}}">
 </head>
 <body>
     <div id="header">
@@ -75,5 +74,7 @@
         </table>
 </div>
     <script src="{{asset('js/shopingcart.js')}}"></script>
+    @include("patterns/cookieform")
+    <script src="{{asset('/js/Navigation.js')}}"></script>
 </body>
 </html>
