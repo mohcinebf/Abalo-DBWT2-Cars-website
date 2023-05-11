@@ -25,9 +25,7 @@ Route::get('/articles', [
     App\Http\Controllers\ArtikelController::class,
     'SearchArticle',
 ]);
-Route::get('/api/articles', function () {
-    return view('api-articles');
-});
+
 /*Route::get('/articles', function () {
     return view('view');
 });*/
@@ -44,9 +42,18 @@ Route::get('/debug/sessions', function () {
     return view('debugsessions');
 });
 
+
+/** Route for M3
+*/
+
 Route::get('/3-ajax1-static', function () {
     return view('3-ajax1-static');
 });
 Route::get('/3-ajax2-periodic', function () {
     return view('3-ajax2-periodic');
 });
+
+Route::get('/api/articles', function () {
+    return view('api-articles');
+});
+

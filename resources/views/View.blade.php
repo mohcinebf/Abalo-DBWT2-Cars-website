@@ -67,7 +67,15 @@
                                 @else
                                 <td></td>
                             @endif
-                            <td><input type="button" id="input{{ $article->id }}" value="+" onclick="shoppingCart({{ $article->id }})"></td>
+                            <td>
+                                <form method="POST" action="/api/shoppingcart/" id="form{{ $article->id }}">
+                                    <input type="hidden" name="article" value="{{ $article->id }}">
+                                </form>
+                                <button form="form" type="submit"
+                                        id="input{{ $article->id }}"
+                                        onclick="shoppingCart({{ $article->id }})">+
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

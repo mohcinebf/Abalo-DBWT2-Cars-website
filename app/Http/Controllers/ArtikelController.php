@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\AbArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class ArtikelController extends Controller
 {
@@ -34,5 +35,14 @@ class ArtikelController extends Controller
         $article->save();
 
         return 'Der Artikel wurde erfolgreich gespeichert';
+    }
+
+    public function _apiDeleteArticle($id): void
+    {
+        $articleToDelete = DB::table('ab_article')->where('id', $id)->get();
+        if($articleToDelete)
+            DB::table('ab_article')->where('id', $id)->delete();
+        else
+            throw new Exception('Artikel nicht gefunden');
     }
 }

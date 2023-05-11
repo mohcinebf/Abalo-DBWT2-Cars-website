@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/**API Route for M3
+ * */
+
+Route::delete('/articles/{id}', [App\Http\Controllers\ArtikelController::class, '_apiDeleteArticle',]);
+
+Route::post('/shoppingcart', [App\Http\Controllers\APIShoppingCartController::class, '_apiAddToCart',]);
+
+Route::delete('/shoppingcart/2/articles/{articleId}',
+    [App\Http\Controllers\APIShoppingCartController::class, '_apiRemoveFromCart',]);
