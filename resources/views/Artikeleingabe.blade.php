@@ -12,15 +12,15 @@
     "use strict"
 
     let form = document.createElement('form');
-    form.action = "/articles";
-    //form.action = "/api/articles";
+    //form.action = "/articles";
+    form.action = "/api/articles";
     form.method = "POST";
 
     let nameInput = document.createElement('input');
     nameInput.setAttribute('type','text');
     nameInput.setAttribute('name', 'ab_name');
     nameInput.setAttribute('placeholder', 'Name');
-    nameInput.required = true;
+    //nameInput.required = true;
     form.append(nameInput);
 
     let descriptionInput = document.createElement('input');
@@ -50,8 +50,8 @@
 
         if(form.reportValidity()) {
             let xhr = new XMLHttpRequest();
-            xhr.open("POST","/articles");
-            //xhr.open("POST","/api/articles");
+            //xhr.open("POST","/articles");
+            xhr.open("POST","/api/articles");
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.onreadystatechange = function (){
                 if(xhr.readyState === 4){
@@ -65,7 +65,7 @@
                             console.log("antwort['errors'][key] = " + antwort['errors'][key]);
                             ausgabe += antwort['errors'][key] + "<br>" ;
                         }
-                        xhrResponse.innerHTML = antwort['message']+ "<br>" + ausgabe ;
+                        xhrResponse.innerHTML =ausgabe ;
                         xhrResponse.style.color = "red";
                     }
                 }

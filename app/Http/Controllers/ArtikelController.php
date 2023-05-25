@@ -70,6 +70,7 @@ class ArtikelController extends Controller
         ]);
         $article = new AbArticle($request->all());
         $article->ab_creator_id = 1;
+        // für den Zugriff von vieln User gleichzeitig
         $idmax = DB::table('ab_article')->max('id');
         $article->id = $idmax + 1;
         $article->save();

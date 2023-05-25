@@ -75,5 +75,11 @@
         </table>
 </div>
     <script src="{{asset('js/shopingcart.js')}}"></script>
+<<<<<<< Updated upstream
+=======
+    @include("patterns/cookieform")
+    <script src="{{asset('/js/Navigation.js')}}"></script>
+
+>>>>>>> Stashed changes
 </body>
 </html>
