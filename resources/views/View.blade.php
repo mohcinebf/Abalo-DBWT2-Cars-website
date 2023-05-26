@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{asset('css/article.css')}}">
 </head>
 <body>
-<!--test Git branche-->
     <div id="header">
         <div class="logo">
         <img src="logo.jpg" width="80px">
