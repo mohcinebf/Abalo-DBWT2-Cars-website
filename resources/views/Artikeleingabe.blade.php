@@ -20,7 +20,7 @@
     nameInput.setAttribute('type','text');
     nameInput.setAttribute('name', 'ab_name');
     nameInput.setAttribute('placeholder', 'Name');
-    nameInput.required = true;
+    //nameInput.required = true;
     form.append(nameInput);
 
     let descriptionInput = document.createElement('input');
@@ -65,10 +65,11 @@
                             console.log("antwort['errors'][key] = " + antwort['errors'][key]);
                             ausgabe += antwort['errors'][key] + "<br>" ;
                         }
-                        xhrResponse.innerHTML = antwort['message']+ "<br>" + ausgabe ;
+                        xhrResponse.innerHTML =ausgabe ;
                         xhrResponse.style.color = "red";
                     }
                 }
+                console.log(xhr.response);
             };
             xhr.send(new FormData(form));
         }
