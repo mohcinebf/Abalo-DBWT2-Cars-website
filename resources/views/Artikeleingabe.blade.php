@@ -81,5 +81,5 @@
     newArticleForm.append(xhrResponse);
 
 </script>
-
-
+</body>
+</html>

@@ -11,12 +11,16 @@ align-items: center;
 display: inline-block;
 padding: 10px;
 }
+#Navigationsmenues li:hover{
+    background-color: #1a202c;
+}
+
 .childList {
 padding-top: 10px;
 display: none;
 }
 .childList.active {
-display: table;
+    display: table;
 }
 .search_item{
 display: flex;
@@ -66,4 +70,9 @@ align-items: center;
     text-align: left;
     background-color: #333;
     color:white;
+}
+
+.response {
+    position: fixed;
+
 }

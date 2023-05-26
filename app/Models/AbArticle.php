@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AbArticle extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
     protected $table = 'ab_article';
 
     public function searchByName($searchTerm) {

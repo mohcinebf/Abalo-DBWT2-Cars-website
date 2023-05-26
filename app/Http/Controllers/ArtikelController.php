@@ -3,10 +3,11 @@ namespace App\Http\Controllers;
 use App\Models\AbArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class ArtikelController extends Controller
 {
-    public function getArticles(Request $request)
+    public function SearchArticle(Request $request)
     {
         $abarticles = new AbArticle();
         if ($request->search) {
@@ -16,7 +17,6 @@ class ArtikelController extends Controller
             $abarticle = $abarticles->get();
             // $abarticle =  DB::table('ab_article')->get();
         }
-        //['abarticle' => $abarticle]['abarticle' => $abarticle]
         return view('view', ['abarticle' => $abarticle]);
     }
     public function store(Request $request): string
@@ -59,6 +59,7 @@ class ArtikelController extends Controller
         }
         return response()->json($data);
     }
+
     public function store_api(Request $request): string
     {
 
@@ -70,7 +71,6 @@ class ArtikelController extends Controller
         ]);
         $article = new AbArticle($request->all());
         $article->ab_creator_id = 1;
-        // für den Zugriff von vieln User gleichzeitig
         $idmax = DB::table('ab_article')->max('id');
         $article->id = $idmax + 1;
         $article->save();
@@ -78,9 +78,14 @@ class ArtikelController extends Controller
         return response()->json([
             'id' => $article->id
         ]);
-       // return 'Der Artikel wurde erfolgreich gespeichertttt';
-
     }
 
-
+    public function _apiDeleteArticle($id): void
+    {
+        $articleToDelete = DB::table('ab_article')->where('id', $id)->get();
+        if($articleToDelete)
+            DB::table('ab_article')->where('id', $id)->delete();
+        else
+            throw new Exception('Artikel nicht gefunden');
+    }
 }

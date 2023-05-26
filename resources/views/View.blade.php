@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Artikeln</title>
-<script src="{{asset('js/Navigation.js')}}"></script>
-<link rel="stylesheet" href="{{asset('css/article.css')}}">
+    <meta charset="UTF-8">
+    <title>Artikeln</title>
+    <link rel="stylesheet" href="{{asset('css/article.css')}}">
 </head>
 <body>
     <div id="header">
@@ -14,7 +13,8 @@
         <div id="Navigationsmenues"></div>
         <div class="search_item">
             <h2>Search for an Item:&nbsp;</h2>
-            <form method="GET" action="articlesapi">
+            <!--<form method="GET" action="/articles">-->
+            <form method="GET" action="/api/articles">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="enter the item name here">
                 <button type="submit">Search</button>
             </form>
@@ -68,18 +68,22 @@
                                 @else
                                 <td></td>
                             @endif
-                            <td><input type="button" id="input{{ $article->id }}" value="+" onclick="shoppingCart({{ $article->id }})"></td>
+                            <td>
+                                <form method="POST" action="/api/shoppingcart/" id="form{{ $article->id }}">
+                                    <input type="hidden" name="article" value="{{ $article->id }}">
+                                </form>
+                                <button form="form" type="submit"
+                                        id="input{{ $article->id }}"
+                                        onclick="shoppingCart({{ $article->id }})">+
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
         </table>
 </div>
     <script src="{{asset('js/shopingcart.js')}}"></script>
-<<<<<<< Updated upstream
-=======
     @include("patterns/cookieform")
     <script src="{{asset('/js/Navigation.js')}}"></script>
-
->>>>>>> Stashed changes
 </body>
 </html>

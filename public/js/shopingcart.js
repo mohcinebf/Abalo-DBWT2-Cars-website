@@ -13,6 +13,7 @@ let CartList = [];
 let divShoppingCart = document.getElementById("Shopping_Cart");
 let showCart = false;
 let table = document.getElementById('Shopping_Cart');
+
 function popUpFunction() {
     if(!showCart) {
         showCart = true;
@@ -55,8 +56,6 @@ function shoppingCart(id) {
      ** add content from the selected article to cart (name, price, image)
      ** this 'if' trigger when button '+' has been clicked.
      */
-    if (addButtonColumn.getAttribute("value") === "+") {
-
     let tdNameContent = articleRow.getElementsByTagName("td").item(1).innerHTML;
     let tdPriceContent = articleRow.getElementsByTagName("td").item(2).innerHTML;
     let tdImageContent = articleRow.getElementsByTagName("td").item(6).innerHTML;
@@ -66,6 +65,8 @@ function shoppingCart(id) {
 
     // hide the already clicked button
     addButtonColumn.style.visibility = "hidden";
+
+    if (addButtonColumn.getAttribute("value") === "+") {
 }
 
     /** create remove button
@@ -88,6 +89,27 @@ function shoppingCart(id) {
     /** add "tr" elements to <table body>
      */
     cartTable.append(new_cartElement);
+
+    event.preventDefault();
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST','/api/shoppingcart');
+    //xhr.setRequestHeader('Accept', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+            } else {
+                const antwort = JSON.parse(xhr.responseText);
+
+                for (let key in antwort['errors']) {
+                    console.log("antwort['errors'][key] = " + antwort['errors'][key]);
+                }
+            }
+        }
+    }
+    let xhrForm = document.getElementById('form' + id);
+    xhr.send(new FormData(xhrForm));
+
 }
 
 /**  function to remove an article from shopping cart
@@ -95,6 +117,22 @@ function shoppingCart(id) {
 */
 function remove_from_shopping_cart(id) {
 
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', '/api/shoppingcart/2/articles/' + id);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+            } else {
+                const antwort = JSON.parse(xhr.responseText);
+
+                for (let key in antwort['errors']) {
+                    console.log("antwort['errors'][key] = " + antwort['errors'][key]);
+                }
+            }
+        }
+    }
+    xhr.send();
     /** remove a row by removing a <tr> tag
      * */
     let trRemoveItem = document.getElementById("cartElement" + id);
