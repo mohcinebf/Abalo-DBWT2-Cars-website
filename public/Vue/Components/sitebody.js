@@ -10,7 +10,6 @@ export default {
     },
     mounted() {
         this.loadArticles();
-
     },
     data(){
         return{
@@ -23,15 +22,6 @@ export default {
         };
     },
     methods: {
-       /* loadArticles() {
-                fetch(`http://localhost:8000/api/articles`)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log("DATA: "+data);
-                        this.items = data;
-                    })
-                    .catch(error => console.log(error.message));
-        },*/
         getImageUrl(id, extension) {
             return `./articelimages/${id}.${extension}`;
         },
@@ -69,8 +59,6 @@ export default {
             }
         },
         setoffset(offset) {
-            //setoffset(){
-            //this.offset+=5;
             this.offset = offset;
         },
         offsetplus() {
@@ -80,9 +68,10 @@ export default {
             }
         },
         offsetminus() {
-            this.offset -= 5;
-            if (this.currentpage >= 1)
+            if (this.currentpage > 1) {
+                this.offset -= 5;
                 this.currentpage--;
+            }
         },
 
         shoppingCart(id) {
@@ -95,7 +84,7 @@ export default {
     },
     template: `
     <div v-if="!this.ShowImpressum">
-      <div class="body"  v-model="loadArticles">
+      <div class="body" >
         <div class="search_item">
             <h2>Search for an Item:&nbsp;</h2>
             <input type="text" v-model="search" v-on:keyup="loadArticles" v-on:change="loadArticles"><br><br>
