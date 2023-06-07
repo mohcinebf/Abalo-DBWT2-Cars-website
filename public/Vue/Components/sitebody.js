@@ -15,6 +15,7 @@ export default {
         return{
             search: "",
             items: [],
+            maxarticles:[],
             offset: 0,
             currentpage: 1,
             ShowImpressum: false,
@@ -22,6 +23,7 @@ export default {
         };
     },
     methods: {
+
         getImageUrl(id, extension) {
             return `./articelimages/${id}.${extension}`;
         },
@@ -39,13 +41,14 @@ export default {
         },
         loadArticles() {
             if (this.search.length > 2) {
-                fetch(
-                    `http://localhost:8000/api/articles2?search=${this.search}&offset=${this.offset}`
+                fetch(`http://localhost:8000/api/articles2?search=${this.search}&offset=${this.offset}`
                 )
                     .then((data) => data.json())
                     .then((data) => {
                         console.log(data);
                         this.items = data;
+                        this.maxarticles =data;
+
                     })
                     .catch((err) => console.log(err.message));
             } else {
@@ -53,18 +56,20 @@ export default {
                     .then((data) => data.json())
                     .then((data) => {
                         console.log(data);
+                        this.maxarticles =data;
+
                         this.items = data.slice(this.offset, this.offset + 5); // Show only the items for the current page
                     })
                     .catch((err) => console.log(err.message));
             }
         },
-        setoffset(offset) {
-            this.offset = offset;
-        },
         offsetplus() {
-            if (this.items.length > 2) {
-                this.offset += 5;
-                this.currentpage++;
+            const totalPages = this.maxarticles.length / 5;
+            if (this.items.length > 2 ) {
+                if (this.currentpage < totalPages) {
+                    this.offset += 5;
+                    this.currentpage++;
+                }
             }
         },
         offsetminus() {
@@ -73,24 +78,38 @@ export default {
                 this.currentpage--;
             }
         },
-
         shoppingCart(id) {
             this.sc.shoppingCart(id);
         },
         impressum(showImpressum) {
             this.ShowImpressum = showImpressum;
         },
-
     },
     template: `
     <div v-if="!this.ShowImpressum">
-      <div class="body" >
+    <div class="popup">
+        <img v-bind:src="'shopping-cart-1985.png'"  width="50px">
+        <table class="popUp_table" id="Shopping_Cart" border="1px">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>REMOVE</th>
+            </tr>
+            </thead>
+            <tbody id="cart">
+            </tbody>
+        </table>
+        <br>
+    </div>
+      <div class="body">
         <div class="search_item">
             <h2>Search for an Item:&nbsp;</h2>
             <input type="text" v-model="search" v-on:keyup="loadArticles" v-on:change="loadArticles"><br><br>
             <br>
         </div>
-            <h1>List of Articles</h1>
+          <h1>List of Articles</h1>
         <table id="Article_table">
             <thead>
             <tr>

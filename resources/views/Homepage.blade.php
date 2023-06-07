@@ -10,12 +10,12 @@
     <div class="app">
         <site-header></site-header><br>
         <site-body :ShowImpressum="this.ShowImpressum"></site-body><br>
-{{--        <site-footer @show-impressum="impressum"></site-footer><br>--}}
+       <!--<site-footer @show-impressum="impressum"></site-footer><br>-->
     </div>
     <script type="module">
         import SiteHeader from "{{asset('/Vue/Components/siteheader.js')}}";
-        import SiteBody from "{{asset('/Vue/Components//sitebody.js')}}";
-        import SiteFooter from "{{asset('/Vue/Components//sitefooter.js')}}";
+        import SiteBody from "{{asset('/Vue/Components/sitebody.js')}}";
+        import SiteFooter from "{{asset('/Vue/Components/sitefooter.js')}}";
         let vm = Vue.createApp({
             components: {
                 SiteHeader,SiteBody,SiteFooter
